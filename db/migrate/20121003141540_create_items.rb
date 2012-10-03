@@ -4,7 +4,7 @@ class CreateItems < ActiveRecord::Migration
       t.string :product_no
       t.string :name
       t.string :name_cont
-      t.bigdecimal :price
+      t.decimal :price
       t.integer :discount1
       t.integer :discount2
       t.integer :pricing_unit

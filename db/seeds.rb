@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+Job.create(name: "Talo Latvala", address_id: 1)
+Job.create(name: "Stemet Oy Laajennus", address_id: 2)
+Address.create(street: "Kolkankatu 2", zip: "15150", city: "Lahti")
+Address.create(street: "Laatukatu 8", zip: "15680", city: "Lahti")

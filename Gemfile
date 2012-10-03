@@ -5,12 +5,15 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+#Authentication
 gem 'devise'
 
+#DB Adapter
 gem 'mysql2'
 
 gem 'therubyracer'
 
+#Base CSS
 gem 'twitter-bootstrap-rails'
 
 # Gems used only for assets and not required
@@ -25,6 +28,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+#For managing zip-packages
+gem 'rubyzip'
+
+#jQuery, of course!
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password

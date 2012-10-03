@@ -11,7 +11,78 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121002200140) do
+ActiveRecord::Schema.define(:version => 20121003142509) do
+
+  create_table "addresses", :force => true do |t|
+    t.string   "street"
+    t.string   "city"
+    t.string   "zip"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.integer  "address_id"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "company"
+    t.boolean  "is_company"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "invoices", :force => true do |t|
+    t.integer  "contact_id"
+    t.integer  "job_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "items", :force => true do |t|
+    t.string   "product_no"
+    t.string   "name"
+    t.string   "name_cont"
+    t.decimal  "price",        :precision => 10, :scale => 0
+    t.integer  "discount1"
+    t.integer  "discount2"
+    t.integer  "pricing_unit"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+  end
+
+  create_table "job_contacts", :force => true do |t|
+    t.integer  "contact_id"
+    t.integer  "job_id"
+    t.string   "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "job_items", :force => true do |t|
+    t.decimal  "amount",         :precision => 10, :scale => 0
+    t.integer  "item_id"
+    t.string   "unit"
+    t.decimal  "price_per_unit", :precision => 10, :scale => 0
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+  end
+
+  create_table "job_workers", :force => true do |t|
+    t.integer  "job_id"
+    t.integer  "worker_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "jobs", :force => true do |t|
+    t.integer  "address_id"
+    t.string   "name"
+    t.boolean  "archived",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -26,9 +97,27 @@ ActiveRecord::Schema.define(:version => 20121002200140) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "role"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "work_hours", :force => true do |t|
+    t.datetime "start"
+    t.datetime "end"
+    t.integer  "lunch"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "workers", :force => true do |t|
+    t.integer  "address_id"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.decimal  "def_tax_percent", :precision => 10, :scale => 0
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+  end
 
 end

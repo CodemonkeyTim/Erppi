@@ -1,2 +1,23 @@
-<h1>Jobs#index</h1>
-<p>Find me in app/views/jobs/index.html.erb</p>
+<h3>Työlista</h3>
+
+<h4>Avoimet</h4>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Työnumero</th>
+			<th>Nimi</th>
+			<th>Osoite</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% @jobs.each do |job| %>
+			<tr>
+				<td><%= job.id %></td>
+				<td><%= job.name %></td>
+				<td><%= job.address.street %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
