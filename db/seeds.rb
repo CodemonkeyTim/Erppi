@@ -11,3 +11,5 @@ Job.create(name: "Talo Latvala", address_id: 1)
 Job.create(name: "Stemet Oy Laajennus", address_id: 2)
 Address.create(street: "Kolkankatu 2", zip: "15150", city: "Lahti")
 Address.create(street: "Laatukatu 8", zip: "15680", city: "Lahti")
+
+User.create(email: "testi@testi.com", password: "kotimaa", password_confirmation: "kotimaa", role: "admin")
