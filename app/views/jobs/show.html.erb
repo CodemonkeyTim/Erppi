@@ -1,0 +1,76 @@
+<div>
+	<h2><%= @job.name%></h2>
+	
+	<br />
+	
+	<div>
+		<%= @job.address.street %> <br />
+		<%= @job.address.zip %>, <%= @job.address.city %> <br />
+	</div>
+	
+	<br />
+	
+	<h3>Tehdyt tunnit</h3>
+	
+	<br />
+	
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Tekijä</th>
+				<th>Määrä</th>
+				<th>Päivämäärä</th>
+			</tr>
+		</thead>
+	</table>
+	
+	<h3>Kulutetut tarvikkeet</h3> 
+	
+	<br />
+	
+	<div class="btn btn-large" onclick="enable_jobitem_adding()">Lisää tarvikkeita</div>
+	
+	<br />
+	<br />
+	
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>S-numero</th>
+				<th>Nimi</th>
+				<th>Määrä</th>
+				<th>Yksikkö</th>
+			</tr>
+		</thead>
+		
+		<tbody id="jobitems_tbody">
+			<% @job.job_items.each do |job_item| %>
+				<tr>
+					<td><%= job_item.item.product_no %></td>
+					<td><%= job_item.item.name %></td>
+					<td><%= job_item.amount %></td>
+					<td><%= job_item.item.unit_of_measurement %></td>
+				</tr>
+			<% end %>
+		</tbody>
+		
+		
+	</table>
+</div>
+
+<script>
+	function enable_jobitem_adding() {
+		html = "<tr>\
+					<td><input type='text' id='product_no_inp' placeholder='S-numero' /></td>\
+					<td><input type='text' id='name_inp' placeholder='Nimi' /></td>\
+					<td><input type='text' id='count_inp' placeholder='Määrä' /></td>\
+					<td><input type='text' id='unit_inp' class='disabled' placeholder='Yksikkö' /></td>\
+				</tr>\
+				<tr>\
+					<td><div class='btn btn-large'>Lisää tuote</div></td>\
+				</tr>";
+				
+		$("#jobitems_tbody").append(html);
+	}
+	
+</script>

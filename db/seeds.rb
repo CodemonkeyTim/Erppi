@@ -13,3 +13,9 @@ Address.create(street: "Kolkankatu 2", zip: "15150", city: "Lahti")
 Address.create(street: "Laatukatu 8", zip: "15680", city: "Lahti")
 
 User.create(email: "testi@testi.com", password: "kotimaa", password_confirmation: "kotimaa", role: "admin")
+
+Item.create(product_no: "0124432", name: "MMJ 3x1.5 DRAKA", price: 1.90, pricing_unit: 1, unit_of_measurement: "m")
+Item.create(product_no: "0123435", name: "2.5 ML RUSKEA", price: 1.2, pricing_unit: 1, unit_of_measurement: "m")
+
+JobItem.create(amount: 95, item_id: 1, job_id: 1, price_per_unit: 1.80)
+JobItem.create(amount: 120, item_id: 2, job_id: 1, price_per_unit: 1.10)

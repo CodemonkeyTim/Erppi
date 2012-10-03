@@ -3,4 +3,6 @@ class Job < ActiveRecord::Base
   
   belongs_to :address
   
+  has_many :job_items
+  
 end

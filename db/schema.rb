@@ -44,12 +44,13 @@ ActiveRecord::Schema.define(:version => 20121003142509) do
     t.string   "product_no"
     t.string   "name"
     t.string   "name_cont"
-    t.decimal  "price",        :precision => 10, :scale => 0
+    t.decimal  "price",               :precision => 10, :scale => 0
     t.integer  "discount1"
     t.integer  "discount2"
     t.integer  "pricing_unit"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.string   "unit_of_measurement"
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
   end
 
   create_table "job_contacts", :force => true do |t|
@@ -63,8 +64,9 @@ ActiveRecord::Schema.define(:version => 20121003142509) do
   create_table "job_items", :force => true do |t|
     t.decimal  "amount",         :precision => 10, :scale => 0
     t.integer  "item_id"
-    t.string   "unit"
+    t.integer  "job_id"
     t.decimal  "price_per_unit", :precision => 10, :scale => 0
+    t.string   "unit"
     t.datetime "created_at",                                    :null => false
     t.datetime "updated_at",                                    :null => false
   end

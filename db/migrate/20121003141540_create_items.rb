@@ -8,6 +8,7 @@ class CreateItems < ActiveRecord::Migration
       t.integer :discount1
       t.integer :discount2
       t.integer :pricing_unit
+      t.string :unit_of_measurement
 
       t.timestamps
     end
