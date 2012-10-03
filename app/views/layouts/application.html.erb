@@ -8,7 +8,41 @@
 </head>
 <body>
 
-<%= yield %>
+
+<div class="container">
+	
+	<% unless flash[:notice].nil? %>
+		<div class="row">
+			<div class="span12 alert alert-info">	
+				<%= flash[:notice]%>
+			</div>
+		</div>
+	<% end %>
+	
+	<% unless flash[:alert].nil? %>
+		<div class="row">
+			<div class="span12 alert alert-success">	
+				<%= flash[:alert] %>
+			</div>
+		</div>
+	<% end %>
+			
+	<% unless flash[:error].nil? %>
+		<div class="row">
+			<div class="span12 alert alert-error">	
+				<%= flash[:alert] %>
+			</div>
+		</div>
+	<% end %>
+	
+	
+	<div class="row">
+		<div class="span12">
+			<%= yield %>	
+		</div>
+	</div>
+</div>
+
 
 </body>
 </html>

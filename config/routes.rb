@@ -1,7 +1,5 @@
 Erppi::Application.routes.draw do
-  
-  
-  root to: "jobs#index"
+  devise_for :users
 
-  devise_for :user
+  root to: "jobs#index"
 end

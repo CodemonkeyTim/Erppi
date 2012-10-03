@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  address_id: 1
+  firstname: MyString
+  lastname: MyString
+  def_tax_percent: 9.99
+
+two:
+  address_id: 1
+  firstname: MyString
+  lastname: MyString
+  def_tax_percent: 9.99
