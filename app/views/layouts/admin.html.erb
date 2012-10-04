@@ -68,15 +68,17 @@
 	<% unless flash[:error].nil? %>
 		<div class="row">
 			<div class="span12 alert alert-error">	
-				<%= flash[:alert] %>
+				<%= flash[:error] %>
 			</div>
 		</div>
 	<% end %>
 	
 	
 	<div class="row">
-		<div class="span12 content-area">
-			<%= yield %>	
+		<div class="span12">
+			<div id="main-content">
+				<%= yield %>
+			</div>	
 		</div>
 	</div>
 </div>

@@ -33,31 +33,37 @@
 <div class="container">
 	<% unless flash[:notice].nil? %>
 		<div class="row">
-			<div class="span12 alert alert-info">	
-				<%= flash[:notice]%>
+			<div class="span12">
+				<div class="alert alert-success login-alerts">	
+					<%= flash[:notice]%>
+				</div>
 			</div>
 		</div>
 	<% end %>
 	
 	<% unless flash[:alert].nil? %>
 		<div class="row">
-			<div class="span12 alert alert-success">	
-				<%= flash[:alert] %>
+			<div class="span12">
+				<div class="alert alert-error login-alerts">	
+					<%= flash[:alert] %>
+				</div>
 			</div>
 		</div>
 	<% end %>
 			
-	<% unless flash[:error].nil? %>
+	<% unless flash[:error].nil? && (true) %>
 		<div class="row">
-			<div class="span12 alert alert-error">	
-				<%= flash[:alert] %>
+			<div class="span12">
+				<div class="alert alert-error login-alerts">	
+					<%= flash[:error] %>
+				</div>
 			</div>
 		</div>
 	<% end %>
 	
 	
 	<div class="row">
-		<div class="span12 content-area">
+		<div class="span12">
 			<%= yield %>	
 		</div>
 	</div>

@@ -28,7 +28,16 @@
 	      			<li><a href="/laskutus">Tarvikkeiden syöttö</a></li>
 	      			<li><a href="/palkanmaksu">Palkkakuitit</a></li>
 	      		</ul>
-		        <!-- .nav, .navbar-search, .navbar-form, etc -->
+		        
+		        
+		       	<div class="btn-group pull-right">
+              		<a class="btn" href="#"><i class="icon-user icon-white"></i><%= current_user.email %></a>
+              		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+              		
+              		<ul class="dropdown-menu">
+		            	<li><a data-method="DELETE" href="<%= destroy_user_session_path %>"><i class="icon-off"></i> Kirjaudu ulos</a></li>
+		           </ul>
+		        </div>
 	    	</div>
  
     	</div>
@@ -39,32 +48,39 @@
 <div class="container">
 	<% unless flash[:notice].nil? %>
 		<div class="row">
-			<div class="span12 alert alert-info">	
-				<%= flash[:notice]%>
+			<div class="span12">	
+				<div class="alert alert-info">
+					<%= flash[:notice]%>
+				</div>
 			</div>
 		</div>
 	<% end %>
 	
 	<% unless flash[:alert].nil? %>
 		<div class="row">
-			<div class="span12 alert alert-success">	
-				<%= flash[:alert] %>
+			<div class="span12">	
+				<div class="alert alert-success">
+					<%= flash[:alert]%>
+				</div>
 			</div>
 		</div>
 	<% end %>
 			
 	<% unless flash[:error].nil? %>
 		<div class="row">
-			<div class="span12 alert alert-error">	
-				<%= flash[:alert] %>
+			<div class="span12">	
+				<div class="alert alert-error">
+					<%= flash[:error]%>
+				</div>
 			</div>
 		</div>
 	<% end %>
 	
-	
 	<div class="row">
-		<div class="span12 content-area">
-			<%= yield %>	
+		<div class="span12">
+			<div id="main-content">
+				<%= yield %>
+			</div>	
 		</div>
 	</div>
 </div>
