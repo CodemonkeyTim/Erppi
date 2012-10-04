@@ -1,14 +1,14 @@
 Erppi::Application.routes.draw do
-  get "job_items/show"
-
-  get "job_items/new"
-
-  get "job_items/edit"
-
   devise_for :users
 
-  root to: "jobs#index"
+  root to: "landing#index"
   
+  #for admin
   match "/tyolista" => "jobs#index"
   match "/tyolista/:id" => "jobs#show"
+  
+  #for worker
+  match "/tuntien_syotto" => "worker#hours"
+  
+  
 end

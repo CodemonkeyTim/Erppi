@@ -1,0 +1,21 @@
+<h2>Kirjaudu sisään</h2>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div>Email<br />
+  <%= f.email_field :email %></div>
+
+  <div>Salasana<br />
+  <%= f.password_field :password %></div>
+	
+	<br />
+	
+  <% if devise_mapping.rememberable? -%>
+    <div><%= f.check_box :remember_me %> Muista minut</div>
+  <% end -%>
+  
+  <br />
+
+  <div><%= f.submit "Kirjaudu sisään", :class => "btn-large" %></div>
+<% end %>
+
+<%= render "devise/links" %>

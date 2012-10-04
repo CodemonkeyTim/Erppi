@@ -23,6 +23,24 @@
 	 
 	      	<!-- Everything you want hidden at 940px or less, place within here -->
 	      	<div class="nav-collapse">
+	      		<ul class="nav">
+	      			<li><a href="/tyolista">Työlista</a></li>
+	      			<li><a href="/laskutus">Laskutus</a></li>
+	      			<li><a href="/palkanmaksu">Palkanmaksu</a></li>
+	      		</ul>
+			    
+			    <div class="btn-group pull-right">
+              		<a class="btn" href="#"><i class="icon-user icon-white"></i><%= current_user.email %></a>
+              		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+              		
+              		<ul class="dropdown-menu">
+		            	<li><a data-method="DELETE" href="<%= destroy_user_session_path %>"><i class="icon-off"></i> Kirjaudu ulos</a></li>
+		           </ul>
+		        </div>
+		        
+		        <ul class="nav pull-right">
+			    	<li class="divider-vertical"></li>
+			    </ul>
 	    	</div>
  
     	</div>

@@ -28,7 +28,7 @@
 	
 	<br />
 	
-	<div class="btn btn-large" onclick="enable_jobitem_adding()">Lisää tarvikkeita</div>
+	<div class="btn btn-large" id="add_jobitems_btn" onclick="enable_jobitem_adding()">Lisää tarvikkeita</div>
 	
 	<br />
 	<br />
@@ -59,18 +59,37 @@
 </div>
 
 <script>
+	var adding_enabled = false;
+	
 	function enable_jobitem_adding() {
-		html = "<tr>\
-					<td><input type='text' id='product_no_inp' placeholder='S-numero' /></td>\
-					<td><input type='text' id='name_inp' placeholder='Nimi' /></td>\
-					<td><input type='text' id='count_inp' placeholder='Määrä' /></td>\
-					<td><input type='text' id='unit_inp' class='disabled' placeholder='Yksikkö' /></td>\
-				</tr>\
-				<tr>\
-					<td><div class='btn btn-large'>Lisää tuote</div></td>\
-				</tr>";
+		if (!adding_enabled) {
+			html = "<tr class='adding_inputs_row'>\
+						<td><input type='text' id='product_no_inp' placeholder='S-numero' class='input-large' /></td>\
+						<td><input type='text' id='name_inp' placeholder='Nimi' class='input-xlarge' /></td>\
+						<td><input type='text' id='count_inp' placeholder='Määrä' class='input-medium' /></td>\
+						<td><input type='text' id='unit_inp' class='disabled' placeholder='Yksikkö' class='input-medium' /></td>\
+					</tr>\
+					<tr class='adding_inputs_row'>\
+						<td><div class='btn btn-large'>Lisää tuote</div></td>\
+						<td><div class='btn btn-large' onclick='disable_jobitem_adding()'>Lopeta lisääminen</div></td>\
+						<td></td>\
+						<td></td>\
+					</tr>";
 				
-		$("#jobitems_tbody").append(html);
+			$("#jobitems_tbody").append(html);
+			$("#add_jobitems_btn").addClass("disabled");
+		}
+		adding_enabled = true;
 	}
 	
+	function disable_jobitem_adding() {
+		if (adding_enabled) {
+			$(".adding_inputs_row").fadeOut();
+			setTimeout(function() {
+				$(".adding_inputs_row").remove();
+				adding_enabled = false;
+				$("#add_jobitems_btn").removeClass("disabled");
+			}, 600);
+		}
+	}
 </script>
