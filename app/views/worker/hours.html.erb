@@ -1,2 +1,160 @@
-<h1>Worker#hours</h1>
-<p>Find me in app/views/worker/hours.html.erb</p>
+<h2>Tuntien syöttö</h2>
+
+<br />
+
+<h3 class="centered-text" data="<%= @today.cweek %>" id="week_header">Viikko <%= @today.cweek %></h3>
+
+<br />
+
+<a class="btn pull-left" onclick="previous_week()"><i class="icon-arrow-left"></i> Edellinen viikko</a>
+<a class="btn pull-right" onclick="next_week()">Seuraava viikko <i class="icon-arrow-right"></i></a>
+
+<br />
+<br />
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Maanantai <%= @dates.first %></th>
+			<th>Tiistai <%= @dates[1] %></th>
+			<th>Keskiviikko <%= @dates[2] %></th>
+			<th>Torstai <%= @dates[3] %></th>
+			<th>Perjantai <%= @dates[4] %></th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			<% (1..5).each do |i| %>
+				<td day-of-the-week="<%= i %>" class="weekday">
+					<table class="table table-bordered">
+						<tbody>
+							<tr>
+								<td>Alkoi</td>
+								<td>
+									<select class="input-small start-time">
+										<% @hours.each do |hour| %>
+											<option><%= hour %></option>
+										<% end %>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>Loppui</td>
+								<td>
+									<select class="input-small end-time">
+										<% @hours.each do |hour| %>
+											<option><%= hour %></option>
+										<% end %>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>Lounas</td>
+								<td>
+									<input class="input-mini lunch-length" />
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			<% end %>
+		</tr>
+	</tbody>	
+</table>
+
+<table class="table hidden table-bordered" id="weekend-table">
+	<thead>
+		<tr>
+			<th>Lauantai <%= @dates[5] %></th>
+			<th>Sunnuntai <%= @dates[6] %></th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			<% (6..7).each do |i| %>
+				<td day-of-the-week="<%= i %>" class="weekday">
+					<table class="table table-bordered">
+						<tbody>
+							<tr>
+								<td>Alkoi</td>
+								<td>
+									<select class="input-small start-time">
+										<% @hours.each do |hour| %>
+											<option><%= hour %></option>
+										<% end %>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>Loppui</td>
+								<td>
+									<select class="input-small end-time">
+										<% @hours.each do |hour| %>
+											<option><%= hour %></option>
+										<% end %>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>Lounas</td>
+								<td>
+									<input class="input-mini lunch-length" />
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			<% end %>
+		</tr>
+	</tbody>	
+</table>
+
+
+<div class="btn btn-large" onclick="show_weekend()">Lisää vkl tunteja</div>
+<div class="btn btn-large">Tallenna tunnit</div>
+
+
+
+<input type="hidden" value="<%= @year %>" id="year_input" />
+
+<script>
+	function previous_week() {
+		var week = $("#week_header").attr("data");
+		week = parseInt(week);
+		
+		var year = $("#year_input").val();
+		year = parseInt(year);
+		
+		if (week == 1) {
+			year = year-1;
+			week = 52;
+		} else {
+			week = week-1;
+		}
+		
+		window.location= "/tuntien_syotto/?week="+week+"&year="+year
+	}
+	
+	function next_week() {
+		var week = $("#week_header").attr("data");
+		week = parseInt(week);
+		
+		var year = $("#year_input").val();
+		year = parseInt(year);
+		
+		if (week == 52) {
+			year = year+1;
+			week = 1;
+		} else {
+			week = week+1;
+		}
+		
+		window.location= "/tuntien_syotto/?week="+week+"&year="+year
+	}
+	
+	function show_weekend () {
+		$("#weekend-table").fadeIn();
+	}
+</script>
