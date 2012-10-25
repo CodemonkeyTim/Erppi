@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121003142509) do
+ActiveRecord::Schema.define(:version => 20121016110216) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(:version => 20121003142509) do
     t.string   "phone"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "global_settings", :force => true do |t|
+    t.integer  "year"
+    t.decimal  "scl_ins",    :precision => 10, :scale => 0
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "invoices", :force => true do |t|
@@ -105,10 +112,30 @@ ActiveRecord::Schema.define(:version => 20121003142509) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
+  create_table "work_days", :force => true do |t|
+    t.date     "date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "work_hours", :force => true do |t|
     t.datetime "start"
     t.datetime "end"
     t.integer  "lunch"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "work_packages", :force => true do |t|
+    t.decimal  "hours",        :precision => 10, :scale => 0
+    t.integer  "kilometres"
+    t.integer  "work_site_id"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+  end
+
+  create_table "work_sites", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

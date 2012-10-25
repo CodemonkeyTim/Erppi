@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class WorkHourTest < ActiveSupport::TestCase
+class WorkSiteTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

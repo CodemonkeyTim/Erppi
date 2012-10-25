@@ -4,9 +4,7 @@ class WorkerController < ApplicationController
   layout "worker"
   
   def hours
-    @real_today = DateTime.now
-    
-    
+    @real_today = DateTime.now    
     
     if params[:week].nil? || params[:year].nil?
       @today = @real_today

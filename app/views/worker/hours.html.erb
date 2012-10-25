@@ -12,110 +12,67 @@
 <br />
 <br />
 
-<table class="table table-bordered">
-	<thead>
-		<tr>
-			<th>Maanantai <%= @dates.first %></th>
-			<th>Tiistai <%= @dates[1] %></th>
-			<th>Keskiviikko <%= @dates[2] %></th>
-			<th>Torstai <%= @dates[3] %></th>
-			<th>Perjantai <%= @dates[4] %></th>
-		</tr>
-	</thead>
+<div class="work-day tabbable">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#tab1" data-toggle="tab">Maanantai <%= @dates.first %></a></li>
+		<li><a href="#tab2" data-toggle="tab">Tiistai <%= @dates[1] %> </a></li>
+		<li><a href="#tab3" data-toggle="tab">Keskiviikko <%= @dates[2] %></a></li>
+		<li><a href="#tab4" data-toggle="tab">Torstai <%= @dates[3] %></a></li>
+		<li><a href="#tab5" data-toggle="tab">Perjantai <%= @dates[4] %></a></li>
+		<li><a href="#tab6" data-toggle="tab">Lauantai <%= @dates[5] %></a></li>
+		<li><a href="#tab7" data-toggle="tab">Sunnuntai <%= @dates[6] %></a></li>
+	</ul>
 	
-	<tbody>
-		<tr>
-			<% (1..5).each do |i| %>
-				<td day-of-the-week="<%= i %>" class="weekday">
-					<table class="table table-bordered">
-						<tbody>
-							<tr>
-								<td>Alkoi</td>
-								<td>
-									<select class="input-small start-time">
-										<% @hours.each do |hour| %>
-											<option><%= hour %></option>
-										<% end %>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td>Loppui</td>
-								<td>
-									<select class="input-small end-time">
-										<% @hours.each do |hour| %>
-											<option><%= hour %></option>
-										<% end %>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td>Lounas</td>
-								<td>
-									<input class="input-mini lunch-length" />
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</td>
-			<% end %>
-		</tr>
-	</tbody>	
-</table>
-
-<table class="table hidden table-bordered" id="weekend-table">
-	<thead>
-		<tr>
-			<th>Lauantai <%= @dates[5] %></th>
-			<th>Sunnuntai <%= @dates[6] %></th>
-		</tr>
-	</thead>
-	
-	<tbody>
-		<tr>
-			<% (6..7).each do |i| %>
-				<td day-of-the-week="<%= i %>" class="weekday">
-					<table class="table table-bordered">
-						<tbody>
-							<tr>
-								<td>Alkoi</td>
-								<td>
-									<select class="input-small start-time">
-										<% @hours.each do |hour| %>
-											<option><%= hour %></option>
-										<% end %>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td>Loppui</td>
-								<td>
-									<select class="input-small end-time">
-										<% @hours.each do |hour| %>
-											<option><%= hour %></option>
-										<% end %>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td>Lounas</td>
-								<td>
-									<input class="input-mini lunch-length" />
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</td>
-			<% end %>
-		</tr>
-	</tbody>	
-</table>
-
-
-<div class="btn btn-large" onclick="show_weekend()">Lisää vkl tunteja</div>
-<div class="btn btn-large">Tallenna tunnit</div>
-
-
+	<div class="tab-content">
+		<div class="tab-pane active" id="tab1">
+			<div class="worksite pull-left">
+				<table class="table no-highlight work-day" data-date="<%= @dates.first %>">
+					<tbody>
+						<tr>
+							<td>Työnumero</td>
+							<td><input type="text" placeholder="Työnumero" class="input-mini" class="hours-input" /></td>
+						</tr>
+						<tr>
+							<td>Tunnit</td>
+							<td><input type="text" placeholder="tunnit" class="input-mini" class="hours-input" /></td>
+						</tr>
+						<tr>
+							<td>Kilometrit</td>
+							<td><input type="text" placeholder="kilometrit" class="input-mini" class="kiloms-input" /></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="clear-both ">
+			<input type="button" class="btn btn-large" value="Lisää työmaa" />
+			<input type="button" class="btn btn-large" value="Tallenna päivän tunnit" />
+			</div>
+		</div>
+		
+		<div class="tab-pane" id="tab1">
+			
+		</div>
+		<div class="tab-pane" id="tab2">
+			
+		</div>
+		<div class="tab-pane" id="tab3">
+			
+		</div>
+		<div class="tab-pane" id="tab4">
+			
+		</div>
+		<div class="tab-pane" id="tab5">
+			
+		</div>
+		<div class="tab-pane" id="tab6">
+			
+		</div>
+		<div class="tab-pane" id="tab7">
+			
+		</div>
+	</div>
+</div>
 
 <input type="hidden" value="<%= @year %>" id="year_input" />
 
@@ -156,5 +113,11 @@
 	
 	function show_weekend () {
 		$("#weekend-table").fadeIn();
+		$("#weekend-hide-btn").fadeIn();
+	}
+	
+	function hide_weekend () {
+		$("#weekend-table").fadeOut();
+		$("#weekend-hide-btn").fadeOut();
 	}
 </script>
