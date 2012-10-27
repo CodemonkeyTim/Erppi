@@ -11,48 +11,47 @@
 
 <br />
 <br />
+<br />
+
 
 <div class="work-day tabbable">
-	<ul class="nav nav-tabs">
-		<li class="active"><a href="#tab1" data-toggle="tab">Maanantai <%= @dates.first %></a></li>
-		<li><a href="#tab2" data-toggle="tab">Tiistai <%= @dates[1] %> </a></li>
-		<li><a href="#tab3" data-toggle="tab">Keskiviikko <%= @dates[2] %></a></li>
-		<li><a href="#tab4" data-toggle="tab">Torstai <%= @dates[3] %></a></li>
-		<li><a href="#tab5" data-toggle="tab">Perjantai <%= @dates[4] %></a></li>
-		<li><a href="#tab6" data-toggle="tab">Lauantai <%= @dates[5] %></a></li>
-		<li><a href="#tab7" data-toggle="tab">Sunnuntai <%= @dates[6] %></a></li>
+	<ul class="nav nav-tabs date-tabs-nav">
+		<li class="active date-tab-li"><a class="date-tab-links" href="#tab1" data-toggle="tab">Maanantai <%= @dates.first %></a></li>
+		<li class="date-tab-li"><a class="date-tab-links" href="#tab2" data-toggle="tab">Tiistai <%= @dates[1] %> </a></li>
+		<li class="date-tab-li"><a class="date-tab-links" href="#tab3" data-toggle="tab">Keskiviikko <%= @dates[2] %></a></li>
+		<li class="date-tab-li"><a class="date-tab-links" href="#tab4" data-toggle="tab">Torstai <%= @dates[3] %></a></li>
+		<li class="date-tab-li"><a class="date-tab-links" href="#tab5" data-toggle="tab">Perjantai <%= @dates[4] %></a></li>
+		<li class="date-tab-li"><a class="date-tab-links" href="#tab6" data-toggle="tab">Lauantai <%= @dates[5] %></a></li>
+		<li class="date-tab-li"><a class="date-tab-links" href="#tab7" data-toggle="tab">Sunnuntai <%= @dates[6] %></a></li>
 	</ul>
 	
 	<div class="tab-content">
 		<div class="tab-pane active" id="tab1">
-			<div class="worksite pull-left">
+			<div class="worksite pull-left well">
 				<table class="table no-highlight work-day" data-date="<%= @dates.first %>">
 					<tbody>
 						<tr>
 							<td>Työnumero</td>
-							<td><input type="text" placeholder="Työnumero" class="input-mini" class="hours-input" /></td>
+							<td><input type="text" placeholder="työnumero" class="input-mini jobnum-input" /></td>
 						</tr>
 						<tr>
 							<td>Tunnit</td>
-							<td><input type="text" placeholder="tunnit" class="input-mini" class="hours-input" /></td>
+							<td><input type="text" placeholder="tunnit" class="input-mini hours-input" /></td>
 						</tr>
 						<tr>
 							<td>Kilometrit</td>
-							<td><input type="text" placeholder="kilometrit" class="input-mini" class="kiloms-input" /></td>
+							<td><input type="text" placeholder="kilometrit" class="input-mini kiloms-input" /></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 			
 			<div class="clear-both ">
-			<input type="button" class="btn btn-large" value="Lisää työmaa" />
-			<input type="button" class="btn btn-large" value="Tallenna päivän tunnit" />
+			<input type="button" onclick="add_worksite('<%= @dates.first %>')" class="btn btn-large" value="Lisää työmaa" />
+			<input type="button" onclick="save_hours(<%= @dates.first %>)" class="btn btn-large" value="Tallenna päivän tunnit" />
 			</div>
 		</div>
-		
-		<div class="tab-pane" id="tab1">
-			
-		</div>
+
 		<div class="tab-pane" id="tab2">
 			
 		</div>
@@ -77,6 +76,47 @@
 <input type="hidden" value="<%= @year %>" id="year_input" />
 
 <script>
+		
+	var counter = 0;
+	
+	function add_worksite (date) {
+		
+		counter++;
+		
+		var additional_class = "additional-worksite"; 
+		
+		if ((counter%3) == 0) {
+			additional_class = "additional-worksite-wo-margin";
+		}
+		
+		var worksite_html = "<div class='worksite pull-left well " + additional_class + "'>\
+							<table class='table no-highlight work-day'>\
+								<tbody>\
+									<tr>\
+										<td>Työnumero</td>\
+										<td><input class='input-mini jobnum-input' placeholder='työnumero' type='text'></td>\
+									</tr>\
+									<tr>\
+										<td>Tunnit</td>\
+										<td><input class='input-mini hours-input' type='text' placeholder='tunnit'></td>\
+									</tr>\
+									<tr>\
+										<td>Kilometrit</td>\
+										<td><input class='input-mini kiloms-input' placeholder='kilometrit' type='text'></td>\
+									</tr>\
+								</tbody>\
+							</table>\
+						</div>"
+		
+		$("table[data-date='" + date + "']").parent().parent().find(".worksite").last().after(worksite_html);
+		
+	}
+
+
+	function save_hours (date) {
+		
+	}
+	
 	function previous_week() {
 		var week = $("#week_header").attr("data");
 		week = parseInt(week);
