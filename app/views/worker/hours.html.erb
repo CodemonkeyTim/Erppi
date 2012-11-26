@@ -11,7 +11,6 @@
 
 <br />
 <br />
-<br />
 
 
 <div class="work-day tabbable">
@@ -26,50 +25,33 @@
 	</ul>
 	
 	<div class="tab-content">
-		<div class="tab-pane active" id="tab1">
-			<div class="worksite pull-left well">
-				<table class="table no-highlight work-day" data-date="<%= @dates.first %>">
-					<tbody>
-						<tr>
-							<td>Työnumero</td>
-							<td><input type="text" placeholder="työnumero" class="input-mini jobnum-input" /></td>
-						</tr>
-						<tr>
-							<td>Tunnit</td>
-							<td><input type="text" placeholder="tunnit" class="input-mini hours-input" /></td>
-						</tr>
-						<tr>
-							<td>Kilometrit</td>
-							<td><input type="text" placeholder="kilometrit" class="input-mini kiloms-input" /></td>
-						</tr>
-					</tbody>
-				</table>
+		<% (0..6).each do |i| %>
+			<div class="tab-pane <%= if i == 0 then "active" end %>" id="tab<%= i+1 %>">
+				<div class="worksite pull-left well">
+					<table class="table no-highlight work-day" data-date="<%= @dates[i] %>">
+						<tbody>
+							<tr>
+								<td>Työnumero</td>
+								<td><input type="text" placeholder="työnumero" class="input-mini jobnum-input" /></td>
+							</tr>
+							<tr>
+								<td>Tunnit</td>
+								<td><input type="text" placeholder="tunnit" class="input-mini hours-input" /></td>
+							</tr>
+							<tr>
+								<td>Kilometrit</td>
+								<td><input type="text" placeholder="kilometrit" class="input-mini kiloms-input" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+				<div class="clear-both ">
+				<input type="button" onclick="add_worksite('<%= @dates[i] %>')" class="btn btn-large" value="Lisää työmaa" />
+				<input type="button" onclick="save_hours('<%= @dates[i] %>')" class="btn btn-large" value="Tallenna päivän tunnit" />
+				</div>
 			</div>
-			
-			<div class="clear-both ">
-			<input type="button" onclick="add_worksite('<%= @dates.first %>')" class="btn btn-large" value="Lisää työmaa" />
-			<input type="button" onclick="save_hours(<%= @dates.first %>)" class="btn btn-large" value="Tallenna päivän tunnit" />
-			</div>
-		</div>
-
-		<div class="tab-pane" id="tab2">
-			
-		</div>
-		<div class="tab-pane" id="tab3">
-			
-		</div>
-		<div class="tab-pane" id="tab4">
-			
-		</div>
-		<div class="tab-pane" id="tab5">
-			
-		</div>
-		<div class="tab-pane" id="tab6">
-			
-		</div>
-		<div class="tab-pane" id="tab7">
-			
-		</div>
+		<% end %>
 	</div>
 </div>
 
@@ -114,7 +96,16 @@
 
 
 	function save_hours (date) {
+		var el = $("table[data-date='" + date + "']").parent().parent();
 		
+		date = date.split(".");
+		date = date.join("");
+		
+		el.prepend("<div class='alert alert-success' id='notify" + date + "'><h3>Tallennettu!</h3></div>");
+		
+		setTimeout(function() {
+			$("#notify"+date).fadeOut();
+		}, 2000);
 	}
 	
 	function previous_week() {

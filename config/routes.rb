@@ -4,8 +4,9 @@ Erppi::Application.routes.draw do
   root to: "landing#index"
   
   #for admin
-  match "/tyolista" => "jobs#index"
-  match "/tyolista/:id" => "jobs#show"
+  match "/palkanlaskenta" => "payroll#index"
+  match "/asetukset" => "settings#index"
+  match "/asetukset/tyontekija/:id" => "settings#worker"
   
   #for worker
   match "/tuntien_syotto" => "worker#hours"

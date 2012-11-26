@@ -35,10 +35,7 @@ class WorkerController < ApplicationController
     end
     
   end
-
-  def items
-  end
-
+  
   def payslips
   end
 end

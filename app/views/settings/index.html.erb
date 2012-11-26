@@ -1,0 +1,74 @@
+<h2>Asetukset vuodelle <%= @year %></h2>
+
+<div class="well">
+	<div class="btn-group">
+		<a data-toggle="dropdown" href="#" class="btn dropdown-toggle"><i class="icon-folder-open"></i> Muut vuodet <span class="caret"></span> </a>
+		<ul class="dropdown-menu">
+			<li><a href="/asetukset/?year=<%= Time.now.year %>"><%= Time.now.year %></a></li>
+			<li><a href="/asetukset/?year=<%= Time.now.year + 1 %>"><%= Time.now.year + 1 %></a></li>
+		</ul>
+	</div>
+	
+	<br />
+	<br />
+	
+	<h3>Yleiset</h3>
+	<table class="table no-highlight">
+		<thead>
+			<tr>
+				<th>Asetus</th>
+				<th>Arvo</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Sotu %</td>
+				<td><input type="text" class="input-mini" placeholder="sotu %"></td>
+				<td><a class="btn btn-medium"><i class="icon-edit"></i> Muokkaa</a></td>
+			</tr>
+			<tr>
+				<td>Työttömyysvakuutus %</td>
+				<td><input type="text" class="input-mini" placeholder="TyV %"></td>
+				<td><a class="btn btn-medium" href="/asetukset/tyontekija/2"><i class="icon-edit"></i> Muokkaa</a></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="well">
+	<h3>Työntekijöiden asetukset </h3>
+	<table class="table no-highlight">
+		<thead>
+			<tr>
+				<th>Nimi</th>
+				<th>Vero %</th>
+				<th>Tuntipalkka €/h</th>
+				<td></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr onclick="show_worker(1)" class="worker-row">
+				<td>Emppu</td>
+				<td>8.5</td>
+				<td>9.38</td>
+			</tr>
+			<tr onclick="show_worker(2)" class="worker-row">
+				<td>Pyry</td>
+				<td>10</td>
+				<td>9.50</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<script>
+	$("#settings-year-select").change(function() {
+		var el = $("#settings-year-select");
+		window.location = "/asetukset/?year=" + el.val();
+	});
+	
+	function show_worker(id) {
+		window.location = "/asetukset/tyontekija/"+id;
+	}
+	
+</script>

@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     end
       
     if current_user.role == "admin"
-      return "/tyolista"                                                                                        
+      return "/palkanlaskenta"                                                                                        
     end              
   end
 end
